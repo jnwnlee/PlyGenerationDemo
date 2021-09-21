@@ -1,17 +1,18 @@
+//import { useState, useEffect } from "react";
 import { UserInput } from "../hook/UserInput";
+import { Tracks } from "./Tracks";
 
 export const SearchForm = () => {
     const { value: query, bind: bindSearch, reset: resetSearch} = UserInput('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`Submitting Query: ${query}`);
-        resetSearch();
-    }
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Search Tracks" {...bindSearch}/>
-            <input type="submit" value="Search"/>
-        </form>
+        <div>
+            <div>
+               <input type="text" placeholder="Search Tracks" {...bindSearch}/>
+            </div>
+
+            <Tracks query={query}/>    
+            
+        </div>
     );
 }
