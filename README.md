@@ -2,6 +2,27 @@
 
 Create your own playlist title from this page!
 
+## Getting Started
+
+### Requirements
+- npm @6.14.14
+- node v14.17.5
+
+### Usage
+1. Clone the repo:
+```
+git clone https://github.com/jnwnlee/PlyGenerationDemo
+cd PlyGenerationDemo
+```
+2. Install dependencies w/ npm
+```
+npm install
+```
+3. Start react scripts
+```
+npm start
+```
+
 ---
 
 # Getting Started with Create React App
