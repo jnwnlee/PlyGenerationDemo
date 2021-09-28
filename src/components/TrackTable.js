@@ -5,6 +5,7 @@ import TRACK_DATA from '../data/filtered_song_meta.json';
 import { Checkbox } from "./Checkbox";
 import { COLUMNS } from './columns';
 import { GlobalFilter, ColumnFilter } from "./Filter";
+import { SelectedTrackTable } from  "./SelectedTrackTable";
 import './table.css';
 
 export const TrackTable = () => {
@@ -125,21 +126,7 @@ export const TrackTable = () => {
             </div>
         </div>
 
-        <div>
-            <pre>
-                <code>
-                    {JSON.stringify(
-                        {
-                            selectedFlatRows: selectedFlatRows.map((row) => row.original)
-                        },
-                        null,
-                        2
-                    )}
-                </code>
-            </pre>
-        </div>
+        <SelectedTrackTable data={selectedFlatRows.map((row) => row.original)}/>
         </>
     )
 }
-
-//<SelectedTrackTable data={selectedFlatRows.map((row) => row.original)}/>
