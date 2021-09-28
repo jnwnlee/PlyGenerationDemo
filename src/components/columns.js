@@ -16,7 +16,8 @@ export const COLUMNS = [
     },
     {
         Header: 'AlbumName',
-        accessor: 'AlbumName'
+        accessor: 'AlbumName',
+        show: false
     },
     {
         Header: 'Genre',
@@ -26,6 +27,7 @@ export const COLUMNS = [
     {
         Header: 'IssueDate',
         accessor: 'IssueDate',
-        disableFilters: true
+        disableFilters: true,
+        show: false
     }
 ]

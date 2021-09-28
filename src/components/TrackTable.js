@@ -54,13 +54,19 @@ export const TrackTable = () => {
         pageCount,
         setPageSize,
         prepareRow,
+        allColumns,
         state,
         setGlobalFilter,
         selectedFlatRows
     } = useTable({
         columns,
         data,
-        defaultColumn
+        defaultColumn,
+        initialState: {
+            hiddenColumns: columns.map(column => {
+                if (column.show === false) return column.accessor || column.id;
+            })
+        }
     }, 
     useFilters, useGlobalFilter, useSortBy, usePagination, useRowSelect,
     (hooks) => {
@@ -100,6 +106,21 @@ export const TrackTable = () => {
         <>
         <div id='search'>
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+            <div style={{float: 'right'}}>
+                <span>{'Show columns: '}</span> 
+                {
+                    allColumns.map(column => {
+                        if (column.show === false){
+                            return (
+                                <label key={column.id}>
+                                    <input type='checkbox' {...column.getToggleHiddenProps()}/>
+                                    {column.Header}
+                                </label>
+                            )
+                        }
+                    })
+                }
+            </div>
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (

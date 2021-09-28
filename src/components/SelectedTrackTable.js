@@ -19,7 +19,12 @@ export const SelectedTrackTable = (props) => {
         prepareRow
     } = useTable({
         columns,
-        data
+        data,
+        initialState: {
+            hiddenColumns: columns.map(column => {
+                if (column.show === false) return column.accessor || column.id;
+            })
+        }
     });
 
     return (
