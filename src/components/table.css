@@ -1,0 +1,43 @@
+#search {
+  max-width: 49%;
+  position: relative;
+  float: left;
+}
+
+#searchInput {
+  display: inline-block;
+  padding: 8px;
+  font-size: 12pt;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: hsl(220, 13%, 80%);
+  color: #000000;
+}
+
+table th:hover {
+  background-color: hsl(220, 13%, 65%);
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table tr,
+table td {
+  padding: 12px;
+}

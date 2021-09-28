@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchForm } from "./components/SearchForm";
+import { TrackTable } from "./components/TrackTable";
 
 import './App.css';
 
@@ -9,7 +9,8 @@ const App = () => {
       <header className="App-header">
         <h1>Playlist Title Generation</h1>
       </header>
-      <SearchForm/>
+      
+      <TrackTable/>
     </div>
   );
 };
