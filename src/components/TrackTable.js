@@ -1,14 +1,38 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { useTable, useSortBy, useGlobalFilter, 
     useFilters, usePagination, useRowSelect } from "react-table";
 import TRACK_DATA from '../data/filtered_song_meta.json';
+import Loader from 'react-loader-spinner';
 import { Checkbox } from "./Checkbox";
 import { COLUMNS } from './columns';
 import { GlobalFilter, ColumnFilter } from "./Filter";
 import { SelectedTrackTable } from  "./SelectedTrackTable";
 import './table.css';
 
+async function fetchData(setLoading) {  
+    setLoading(true);
+    try{
+        let data;
+        data = await require('../data/filtered_song_meta.json');
+        return data;
+    }
+    catch (err) {
+        alert('<ERROR> while fetching track list.\n'+err);
+    }
+    setLoading(false);
+}
+
 export const TrackTable = () => {
+    /**
+     * table of tracks.
+     * able to filter, sort, select among tracks.
+     * table is paginated
+     */
+
+    const [loading, setLoading] = useState(false);
+
+    //const TRACK_DATA = fetchData(setLoading);
+    
 
     const columns = useMemo(() => COLUMNS, []);
     const data = useMemo(() => TRACK_DATA, []);
@@ -61,6 +85,16 @@ export const TrackTable = () => {
 
     const { globalFilter, pageIndex, pageSize } = state;
 
+
+    if (loading){
+        console.log('return load');
+        return (
+                    <div>
+                        <span>Loading Tracks ...</span>
+                        <Loader type="ThreeDots" color="#2BAD60" height="100" width="100" />
+                    </div>
+        );
+    }
 
     return (
         <>

@@ -1,9 +1,12 @@
 import React, { useMemo } from "react";
-import { useTable, useSortBy, useGlobalFilter, 
-    useFilters, usePagination, useRowSelect } from "react-table";    
+import { useTable } from "react-table";    
 import { COLUMNS } from './columns';
 
 export const SelectedTrackTable = (props) => {
+    /**
+     * table of selected tracks.
+     * @param {Array} props.data array of selected track objects.
+     */
 
     const columns = useMemo(() => COLUMNS, []);
     const data = props.data;
