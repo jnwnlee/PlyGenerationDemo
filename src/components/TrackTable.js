@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useTable, useSortBy, useGlobalFilter, 
     useFilters, usePagination, useRowSelect } from "react-table";
-import TRACK_DATA from '../data/filtered_song_meta.json';
+//import TRACK_DATA from '../data/filtered_song_meta.json';
 import Loader from 'react-loader-spinner';
 import { Checkbox } from "./Checkbox";
 import { COLUMNS } from './columns';
@@ -9,18 +9,7 @@ import { GlobalFilter, ColumnFilter } from "./Filter";
 import { SelectedTrackTable } from  "./SelectedTrackTable";
 import './table.css';
 
-async function fetchData(setLoading) {  
-    setLoading(true);
-    try{
-        let data;
-        data = await require('../data/filtered_song_meta.json');
-        return data;
-    }
-    catch (err) {
-        alert('<ERROR> while fetching track list.\n'+err);
-    }
-    setLoading(false);
-}
+
 
 export const TrackTable = () => {
     /**
@@ -28,14 +17,34 @@ export const TrackTable = () => {
      * able to filter, sort, select among tracks.
      * table is paginated
      */
+    
+     async function requireData(setLoading, setTrackData) {  
+        setLoading(true);
+        try{
+            let data_obj;
+            data_obj = await require('../data/filtered_song_meta.json');
+            console.log("data: ", data_obj);
+            setTrackData([...data_obj]);
+            setLoading(false);
+            return data_obj;
+        }
+        catch (err) {
+            alert('<ERROR> while fetching track list.\n'+err);
+        }
+    }
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [trackData, setTrackData] = useState([]);
 
-    //const TRACK_DATA = fetchData(setLoading);
+    useEffect(() => {
+        requireData(setLoading, setTrackData);
+        console.log("trackData: ", trackData);
+    }, []);
     
 
     const columns = useMemo(() => COLUMNS, []);
-    const data = useMemo(() => TRACK_DATA, []);
+    //const data = useMemo(() => trackData, []);
+    const data = trackData;
     const defaultColumn = useMemo(() => ({Filter: ColumnFilter}), []);
     const MAXLENGTH = 40;
 
@@ -157,7 +166,7 @@ export const TrackTable = () => {
                 <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
                 <span>
                     {' '}Page{' '}
-                    <input type='number' defaultValue={pageIndex + 1}
+                    <input type='number' 
                         value={pageIndex + 1}
                         onChange={e =>{
                             const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
