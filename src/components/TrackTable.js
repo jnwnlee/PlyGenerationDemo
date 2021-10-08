@@ -99,7 +99,23 @@ export const TrackTable = () => {
     );
 
     const { globalFilter, pageIndex, pageSize } = state;
+    const [ selectedRows, setSelectedRows ] = useState([]);
+    useEffect(() => {
+        const flattenRows = selectedFlatRows.length === 0 
+                            ? []
+                            : selectedFlatRows.map((row) => row.original);
 
+        if (flattenRows.length >= selectedRows.length){
+            for (const r of flattenRows){
+                if (!selectedRows.includes(r)) {
+                    setSelectedRows([...selectedRows, r]);
+                    console.log('pushed', r);
+                }
+        }}
+        if (selectedRows.length >= flattenRows.length){
+            setSelectedRows([...selectedRows.filter(val => {flattenRows.includes(val)})]);
+        }
+    }, [selectedFlatRows]);
 
     if (loading){
         console.log('return load');
@@ -139,7 +155,7 @@ export const TrackTable = () => {
                                     {column.render('Header')}
                                     <span>
                                         {column.isSorted ? (column.isSortedDesc ? ' ▼' : ' ▲') : 
-                                            (idx === 6 ? '' : ' ⇵')}   
+                                            (column.id == 'selection' ? '' : ' ⇵')}   
                                     </span>
                                     <div>{column.canFilter ? column.render('Filter') : null}</div>
                                 </th>
@@ -190,7 +206,8 @@ export const TrackTable = () => {
             </div>
         </div>
 
-        <SelectedTrackTable data={selectedFlatRows.map((row) => row.original)}/>
+        
+        <SelectedTrackTable data={selectedRows}/>
         </>
     )
 }
