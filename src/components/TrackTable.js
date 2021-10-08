@@ -113,9 +113,20 @@ export const TrackTable = () => {
                 }
         }}
         if (selectedRows.length >= flattenRows.length){
-            setSelectedRows([...selectedRows.filter(val => {flattenRows.includes(val)})]);
+            setSelectedRows([...selectedRows.filter(val => flattenRows.filter(row => row.id===val.id).length>0)]);
         }
     }, [selectedFlatRows]);
+
+    const onGenerate = () => {
+        const selectedTrackID = selectedRows.map(row => row.id)
+        console.log('IDs: ', selectedTrackID);
+        if (selectedTrackID.length === 0){
+            alert('No track selected!');
+        } 
+        else{
+            alert("IDs of Selected Tracks: "+selectedTrackID.toString());
+        }
+    }
 
     if (loading){
         console.log('return load');
@@ -155,7 +166,7 @@ export const TrackTable = () => {
                                     {column.render('Header')}
                                     <span>
                                         {column.isSorted ? (column.isSortedDesc ? ' ▼' : ' ▲') : 
-                                            (column.id == 'selection' ? '' : ' ⇵')}   
+                                            (column.id === 'selection' ? '' : ' ⇵')}   
                                     </span>
                                     <div>{column.canFilter ? column.render('Filter') : null}</div>
                                 </th>
@@ -206,7 +217,7 @@ export const TrackTable = () => {
             </div>
         </div>
 
-        
+        <button id="generate" onClick={onGenerate} style={{fontSize:'30pt'}}>Generate Title</button>
         <SelectedTrackTable data={selectedRows}/>
         </>
     )
