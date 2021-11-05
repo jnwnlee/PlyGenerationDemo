@@ -132,7 +132,7 @@ export const TrackTable = () => {
         console.log('return load');
         return (
                     <div>
-                        <span>Loading Tracks ...</span>
+                        <h2 id='loader'>Loading Tracks ...</h2>
                         <Loader type="ThreeDots" color="#2BAD60" height="100" width="100" />
                     </div>
         );
@@ -142,16 +142,16 @@ export const TrackTable = () => {
         <>
         <div id='search'>
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
-            <div style={{float: 'right'}}>
+            <div id='showCols'>
                 <span>{'Show columns: '}</span> 
                 {
                     allColumns.map(column => {
                         if (column.show === false){
                             return (
-                                <label key={column.id}>
-                                    <input type='checkbox' {...column.getToggleHiddenProps()}/>
-                                    {column.Header}
-                                </label>
+                                <div id='selectCol' key={column.id}>
+                                    <input type='checkbox' id={column.Header} {...column.getToggleHiddenProps()}/>
+                                    <label for={column.Header}>{column.Header}</label> 
+                                </div>
                             )
                         }
                     })
@@ -162,9 +162,9 @@ export const TrackTable = () => {
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}> 
                             {headerGroup.headers.map((column, idx) => (
-                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                <th >
                                     {column.render('Header')}
-                                    <span>
+                                    <span {...column.getHeaderProps(column.getSortByToggleProps())}>
                                         {column.isSorted ? (column.isSortedDesc ? ' ▼' : ' ▲') : 
                                             (column.id === 'selection' ? '' : ' ⇵')}   
                                     </span>
@@ -189,7 +189,7 @@ export const TrackTable = () => {
                     }
                 </tbody>
             </table>
-            <div>
+            <div id='pageSelect'>
                 <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</button>
                 <span>
                     {' '}Page{' '}
@@ -200,7 +200,7 @@ export const TrackTable = () => {
                             gotoPage(pageNumber);
                     }} />
                     <strong>
-                        of {pageOptions.length}
+                        {' '}of {pageOptions.length}
                     </strong>{' '}
                 </span>
                 <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button>
@@ -216,8 +216,10 @@ export const TrackTable = () => {
                 </select>
             </div>
         </div>
-
-        <button id="generate" onClick={onGenerate} style={{fontSize:'30pt'}}>Generate Title</button>
+        <div id='generate'>
+            <button id="genBut" onClick={onGenerate}>▶</button>
+            <label for='genBut'>Generate Title</label>
+        </div>
         <SelectedTrackTable data={selectedRows}/>
         </>
     )

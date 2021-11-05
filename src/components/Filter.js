@@ -15,7 +15,7 @@ export const GlobalFilter = ({ filter, setFilter }) => {
     
     return (
         <span id='searchInput'>
-            <input placeholder='Search'
+            <input type='text' placeholder='Search'
             value={value || ''}
             onChange={e => {
                 setValue(e.target.value)
@@ -40,7 +40,7 @@ export const ColumnFilter = ({ column }) => {
 
     return (
         <span id='columnSearchInput'>
-            <input placeholder='Search'
+            <input type='text' placeholder='Search'
             value={value || ''}
             onChange={e => {
                 setValue(e.target.value)

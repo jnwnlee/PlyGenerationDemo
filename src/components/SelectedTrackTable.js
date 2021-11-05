@@ -29,7 +29,7 @@ export const SelectedTrackTable = (props) => {
 
     return (
         <div id='selectecd' style={{width: '49%', position:'relative', float:"right"}}>
-            <h3>Selected Tracks</h3>
+            <h3 class='tableTitle'>Selected Tracks</h3>
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (

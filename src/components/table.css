@@ -1,7 +1,17 @@
 #search {
-  max-width: 49%;
+  box-sizing: border-box;
+  width: 50%;
   position: relative;
   float: left;
+  padding: 1rem;
+}
+
+#selected {
+  position: relative;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  padding: 1rem;
 }
 
 #searchInput {
@@ -10,34 +20,211 @@
   font-size: 12pt;
 }
 
+#showCols {
+  float: right;
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: #b3b3b3;
+  text-align: center;
+  padding: 8px;
+}
+
+#selectCol :hover{
+  background-color: rgba(255,255,255,0.1);
+  font-weight: bold;
+}
+
+#selectCol input{
+  display: none;
+}
+
+#selectCol input:checked + label {
+  font-weight: bold;
+  color: #1db954;
+}
+#selectCol label{
+  cursor: pointer;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
 }
 
+.tableTitle {
+  font-size: calc(10px + 2vmin);
+  letter-spacing: .1em;
+  color: #b3b3b3;
+}
+
+input[type=text]{
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #b3b3b3;
+  background: none;
+  background-color: none;
+  font-size: calc(10px + 1.5vmin);
+  color: #b3b3b3;
+  transition: .3s;
+}
+
+input[type=text]:focus{
+  border: none;
+  border-bottom: 2px solid #1db954;
+  color: #ffffff;
+  box-shadow:0 4px 8px 2px rgba(179,179,179, .7);
+}
+
+table input[type=text]{
+  width: 60%;
+  border-bottom: 1px solid #b3b3b3;
+  font-size: inherit;
+  margin-top: 0.2rem;
+}
+
+/*  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);*/
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 14px;
+  letter-spacing: .1em;
   text-align: center;
-  background-color: hsl(220, 13%, 80%);
-  color: #000000;
+  background-color: #353535;
+  color: #b3b3b3;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255,255,255,0.1);
 }
-
+/*  background-color: hsla(219, 14%, 80%);*/
 table th:hover {
-  background-color: hsl(220, 13%, 65%);
+  background-color: rgba(255,255,255,.01);
 }
-
+/*hsl(220, 13%, 65%)*/
 table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgba(255,255,255,.05);
 }
 
 table tr:hover {
-  background-color: #ddd;
+  background-color: rgba(255,255,255,.2);
+}
+
+table td {
+  font-size: 16px;
+  letter-spacing: normal;
 }
 
 table tr,
 table td {
   padding: 12px;
+}
+
+input[type=checkbox]:active{
+  filter: invert(47%) sepia(100%) saturate(398%) hue-rotate(89deg) brightness(51%) contrast(87%);
+}
+
+
+input[type=checkbox]:checked{
+  filter: invert(47%) sepia(100%) saturate(398%) hue-rotate(89deg) brightness(101%) contrast(87%);
+}
+
+#pageSelect {
+  padding: 1rem;
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: #b3b3b3;
+}
+
+#pageSelect > *{
+  margin: 0.2rem;
+}
+
+#pageSelect > button{
+  background: none;
+  border: none;
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: #b3b3b3;
+  text-decoration: underline;
+}
+
+#pageSelect > button:disabled{
+  visibility: hidden;
+}
+#pageSelect > button:hover:enabled{
+  background-color: rgba(255,255,255,0.1);
+  color: #1db954;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#generate button{
+  background-color: #1db954;
+  border-radius: 500px;
+  border: none;
+  font-size: calc(10px + 2.5vmin);
+  text-align: center;
+  margin-right: 1rem;
+  color: #ffffff;
+}
+
+#generate label{
+  font-size: calc(10px + 2.5vmin);
+  letter-spacing: .1em;
+}
+
+#generate button:hover, #generate label:hover{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#generate button:hover{
+  box-shadow: 3px 3px 15px #b3b3b3;
+}
+
+input[type=text]:focus{
+  border: none;
+  border-bottom: 2px solid #1db954;
+  color: #ffffff;
+  box-shadow:0 4px 8px 2px rgba(179,179,179, .7);
+}
+
+
+#pageSelect input[type=number]{
+  box-sizing: border-box;
+  width: 10%;
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
+  background: none;
+  background-color: none;
+  font-size: inherit;
+  color: #b3b3b3;
+  text-align: center;
+  transition: .3s;
+}
+
+#pageSelect input[type=number]::-webkit-inner-spin-button{
+  opacity: 1;
+  background-color: none;
+}
+
+#pageSelect select{
+  margin-top: .5rem;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
+  background: none;
+  background-color: #282828;
+  font-size: inherit;
+  color: #b3b3b3;
+  text-align: center;
+  transition: .3s;
+}
+
+#pageSelect select:active{
+  background-color: #1db954;
 }
