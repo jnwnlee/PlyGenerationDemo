@@ -1,18 +1,41 @@
 #search {
   box-sizing: border-box;
-  width: 50%;
   position: relative;
-  float: left;
   padding: 1rem;
+}
+/*float: left;*/
+
+@media (max-width: 767px) {
+  #search{
+    width: 100%;
+  }
+  #generate {
+    width: 100%;
+  }
+  #selected{
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #search {
+    width: 50%;
+    float: left;
+  }
+  #generate {
+    float: right;
+    width: 50%;
+    padding: 2rem;
+  }
 }
 
 #selected {
-  position: relative;
   box-sizing: border-box;
-  width: 50%;
-  float: right;
+  width: 100%;
   padding: 1rem;
 }
+/*  float: right;*/
 
 #searchInput {
   display: inline-block;
@@ -21,13 +44,13 @@
 }
 
 #showCols {
-  float: right;
   font-size: 14px;
   letter-spacing: .1em;
   color: #b3b3b3;
   text-align: center;
   padding: 8px;
 }
+/*float: right;*/
 
 #selectCol :hover{
   background-color: rgba(255,255,255,0.1);
@@ -162,6 +185,10 @@ input[type=checkbox]:checked{
   cursor: pointer;
 }
 
+#generate {
+  box-sizing: border-box;
+}
+
 #generate button{
   background-color: #1db954;
   border-radius: 500px;
@@ -193,10 +220,9 @@ input[type=text]:focus{
   box-shadow:0 4px 8px 2px rgba(179,179,179, .7);
 }
 
-
 #pageSelect input[type=number]{
   box-sizing: border-box;
-  width: 10%;
+  width: calc(12pt + 10%);
   border: none;
   border-bottom: 1px solid #b3b3b3;
   background: none;

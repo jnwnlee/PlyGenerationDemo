@@ -219,8 +219,8 @@ export const TrackTable = () => {
         <div id='generate'>
             <button id="genBut" onClick={onGenerate}>▶</button>
             <label for='genBut'>Generate Title</label>
-        </div>
         <SelectedTrackTable data={selectedRows}/>
+        </div>
         </>
     )
 }

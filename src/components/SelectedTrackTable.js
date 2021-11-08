@@ -28,7 +28,7 @@ export const SelectedTrackTable = (props) => {
     });
 
     return (
-        <div id='selectecd' style={{width: '49%', position:'relative', float:"right"}}>
+        <div id='selectecd'>
             <h3 class='tableTitle'>Selected Tracks</h3>
             <table {...getTableProps()}>
                 <thead>

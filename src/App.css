@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background: linear-gradient(177deg, rgba(255,255,255,0.18),#282828 100%);
+  background: -webkit-linear-gradient(177deg, rgba(255,255,255,0.18),#282828 100%);
   background-color: #282828;
   min-height: 10%;
   display: flex;
