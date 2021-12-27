@@ -6,6 +6,7 @@ Create your own playlist title from this page!
 
 ### Requirements
 - npm @6.14.14
+- npx 6.14.14
 - node v14.17.5
 
 ### Usage
